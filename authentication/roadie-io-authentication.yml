@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/roadie-io-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Roadie API token passed as `Authorization: Bearer YOUR_ROADIE_API_TOKEN`.
+    Two token types exist - User Tokens (tied to a person, created under
+    Administration then Account then Roadie API Access; requires the "Roadie
+    API Key Access" policy) and Service Tokens (unattached, for automation and
+    CI/CD, created under Administration then Service Tokens). Both grant the
+    same API access and are shown only once at creation. The public API is
+    available on Cloud Hosted Roadie.
+  sources:
+  - openapi/roadie-io-openapi.yml
+  - https://roadie.io/docs/api/authorization/

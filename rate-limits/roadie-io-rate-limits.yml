@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Roadie
+providerId: roadie-io
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Software Catalog
+- Internal Developer Portal
+- Backstage
+- Rate Limiting
+- Quotas
+description: >-
+  Roadie does not publish fixed numeric rate limits for its public REST API
+  (https://api.roadie.so/api). Access is governed by tenant plan and by Roadie's
+  permission model (RBAC) rather than by a documented per-minute request cap.
+  The entity-push API is designed for idempotent, scheduled synchronization
+  (recreating an entire entity set on a cron), which implicitly favors periodic
+  batch calls over high-frequency requests. Clients should implement retries
+  with exponential backoff and honor Retry-After on any 429 responses.
+notes: >-
+  No numeric per-account or per-endpoint request limits are documented as of the
+  review date. REST API access itself is gated to higher plan tiers. Verify any
+  operational limits with Roadie support during reconciliation.
+sources:
+- https://roadie.io/docs/api/overview/
+- https://roadie.io/docs/integrations/roadie-api/
+- https://roadie.io/docs/api/authorization/
+responseCodes:
+  throttled: 429
+limits:
+- name: Public API Requests
+  scope: tenant
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the Roadie public API.
+- name: Entity Set Sync
+  scope: tenant
+  metric: requests
+  limit: not published
+  notes: Entity sets are idempotent and intended to be re-pushed on a schedule rather than at high frequency.
+- name: Permission Model
+  scope: token
+  metric: authorization
+  limit: RBAC-governed
+  notes: Access is bounded by the policies attached to the User or Service Token, not by a request quota.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Idempotent Sync
+  description: Prefer entity-set PUT for bulk catalog synchronization so repeated runs are safe and self-correcting.
+- name: Least Privilege
+  description: Use scoped Service Tokens for automation and grant only the RBAC policies each integration requires.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

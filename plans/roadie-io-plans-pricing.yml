@@ -1,0 +1,115 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Roadie
+providerId: roadie-io
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Software Catalog
+- Internal Developer Portal
+- Backstage
+- IDP
+- Plans
+description: >-
+  Roadie is a commercial managed-Backstage product priced per contributing
+  developer per month (developers who write tracked code; non-coding users can
+  log in free). The underlying Backstage framework is free and open source
+  (Apache 2.0) - Roadie's charge is for the hosted, upgraded, supported portal.
+  Published tiers are a Teams plan at a per-developer monthly rate and a Growth
+  plan at custom pricing that adds SLA, support, custom plugins, and REST API
+  access; a separate Enterprise Context product is priced per organization.
+  REST API access is called out as a Growth-tier capability, so programmatic
+  use of api.roadie.so may require the higher tier. Exact current rates should
+  be reconciled against the Roadie pricing page.
+notes: >-
+  Pricing observed on roadie.io/pricing as of the review date lists Teams at
+  about $24 per developer per month (50-150 developers, existing subscribers)
+  and Growth at custom pricing (100+ developers) with REST API access. Figures
+  and tier availability change; verify on the pricing page and with sales during
+  reconciliation.
+sources:
+- https://roadie.io/pricing/
+- https://roadie.io/docs/api/overview/
+- https://roadie.io/docs/integrations/roadie-api/
+plans:
+- id: roadie-teams
+  name: Teams
+  type: paid
+  description: >-
+    Managed Backstage for a team - hosted software catalog, automatic upgrades,
+    TechDocs and API specs, self-service Scaffolder templates, 75+ plugins, SSO,
+    RAG AI and MCP server access, and optional scorecards. Priced per
+    contributing developer per month.
+  entries:
+  - label: Per Contributing Developer
+    name: teams_per_dev
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: about 24 USD per developer per month (verify on pricing page)
+    userMultiplied: true
+  elements:
+  - name: Backstage Software Catalog
+  - name: TechDocs and API Specs
+  - name: Self-Service Scaffolder Templates
+  - name: 75+ Plugins
+  - name: SSO
+  - name: RAG AI and MCP Server Access
+- id: roadie-growth
+  name: Growth
+  type: paid
+  description: >-
+    Everything in Teams for larger organizations (100+ developers), adding SLA,
+    Slack/MS Teams support, custom plugins, REST API access, advanced search,
+    secure on-prem connection, usage analytics, and custom RBAC. REST API access
+    to api.roadie.so is a Growth-tier capability.
+  entries:
+  - label: Custom Per-Developer Agreement
+    name: growth_custom
+    type: usage
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: custom (contact sales)
+    userMultiplied: true
+  elements:
+  - name: REST API Access
+  - name: SLA
+  - name: Slack and MS Teams Support
+  - name: Custom Plugins
+  - name: Advanced Search
+  - name: Usage Analytics
+  - name: Custom RBAC
+- id: roadie-enterprise-context
+  name: Enterprise Context
+  type: enterprise
+  description: >-
+    A separate, organization-priced product providing an integration-powered
+    data store with 100+ pre-built data sources, custom data sources, secure
+    connections, permissioned agent access, REST API, and MCP servers. Can bundle
+    with the Roadie IDP or be purchased standalone.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise_context
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: custom per organization (contact sales)
+    userMultiplied: false
+  elements:
+  - name: 100+ Pre-Built Data Sources
+  - name: Permissioned Agent Access
+  - name: REST API and MCP Servers
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

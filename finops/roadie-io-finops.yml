@@ -1,0 +1,92 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Roadie
+providerId: roadie-io
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Software Catalog
+- Internal Developer Portal
+- Backstage
+- IDP
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Roadie spend. Roadie is a managed-Backstage SaaS billed per
+  contributing developer per month (developers who write tracked code; non-coding
+  viewers are free), with a Teams tier at a fixed per-developer rate and a Growth
+  tier at custom per-developer pricing that unlocks REST API access. A separate
+  Enterprise Context product is priced per organization. Because billing is
+  seat-based rather than usage-metered, the primary cost driver is the count of
+  contributing developers, and the API itself carries no separate per-call fee -
+  it is included with the plan tier that grants API access. The comparison point
+  is self-hosting open-source Backstage, where there is no license fee but the
+  cost shifts to the platform team's own infrastructure and engineering time.
+notes: >-
+  Per-developer rates are not reconciled here; verify on roadie.io/pricing. The
+  main optimization levers are managing the number of contributing seats and
+  choosing managed Roadie versus self-hosted Backstage based on platform-team
+  capacity.
+sources:
+- https://roadie.io/pricing/
+- https://roadie.io/docs/api/overview/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Roadie
+serviceCategory: Developer Tools and Platform Engineering
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Roadie
+  ServiceCategory: Developer Tools and Platform Engineering
+  ProviderName: Roadie
+  PublisherName: Larder Software Limited
+  InvoiceIssuerName: Roadie
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: contributing_developers
+  description: Developers who write tracked code, the per-seat basis for Teams and Growth plans.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: enterprise_context
+  description: Organization-level Enterprise Context subscription, priced per organization.
+  unit: contract
+  aggregation: max
+  dimensions:
+  - account
+- name: self_hosted_backstage
+  description: Alternative cost of running open-source Backstage yourself (infrastructure plus platform-team time; no Roadie invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - deployment
+principles:
+- name: Visibility
+  description: Track the count of contributing developer seats and the plan tier; API access is bundled, not separately metered.
+- name: Allocation
+  description: Map contributing seats to teams so the per-developer subscription maps to internal cost centers.
+- name: Optimization
+  description: Right-size contributing seats, keep non-coding users on free viewer access, and weigh managed Roadie against self-hosting Backstage based on platform-team capacity.
+- name: Accountability
+  description: Assign a platform-engineering owner for the Roadie subscription and review seat counts and tier fit each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,124 @@
+aid: roadie-io
+name: Roadie
+review:
+  question: Does Roadie expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Roadie's public API surface
+    (https://api.roadie.so/api) is request/response REST over HTTPS - the
+    software catalog read and entity-push endpoints, the Scaffolder v2
+    endpoints, the Tech Insights endpoints, and the TechDocs endpoints are all
+    plain HTTP. The one push-style transport is the Scaffolder task
+    eventstream, which is Server-Sent Events (text/event-stream), not a
+    WebSocket. Roadie's six MCP servers speak the Model Context Protocol over
+    HTTP (streamable HTTP / SSE), also not a documented raw WebSocket API. There
+    is no server-push wss:// endpoint on Roadie's own public API to model.
+findings:
+  summary: |
+    Roadie does not publish a documented public WebSocket API. Roadie is managed
+    Backstage - a hosted internal developer portal and software catalog. Its
+    public REST API is served from https://api.roadie.so/api and authenticated
+    with a Bearer token (User Token or Service Token) created in the Roadie
+    Administration UI. Confirmed surfaces are the Catalog (Backstage software
+    catalog read), the Roadie entity-push API (roadie-entities entities and
+    idempotent entity sets), the Scaffolder v2 API (software templates - actions,
+    tasks, dry-run), and the Tech Insights v1 API (facts, checks, scorecards).
+    Roadie also exposes six MCP servers under /api/mcp/v1 for agent access. The
+    only streaming transport is the Scaffolder task eventstream over Server-Sent
+    Events; no bidirectional WebSocket (ws:// or wss://) endpoint is documented
+    on Roadie's own public API as of the review date.
+  openSource: |
+    Backstage, the framework Roadie is built on, is open source (Apache 2.0,
+    github.com/backstage/backstage). Roadie itself is the commercial managed
+    (SaaS) product operated by Larder Software Limited - it is not open source.
+    The public REST API is available on Cloud Hosted Roadie. Catalog read
+    endpoints follow the upstream Backstage Software Catalog API shape; the
+    roadie-entities and entity-set endpoints are Roadie's own ingestion API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.roadie.so/api
+      documented: true
+      note: Catalog, entity-push, Scaffolder v2, Tech Insights v1, and TechDocs are request/response REST over HTTPS.
+    - protocol: Server-Sent Events
+      scheme: https
+      documented: true
+      note: Scaffolder task progress via GET /api/scaffolder/v2/tasks/{taskId}/eventstream (text/event-stream). Server push, not WebSocket.
+    - protocol: MCP
+      scheme: https
+      documented: true
+      note: Six MCP servers under /api/mcp/v1 (api-docs-query, backend-config, catalog-decorators, rich-catalog-entity, scaffolder-use, tech-insights-facts) over streamable HTTP.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Roadie's public API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.roadie.so/api/catalog/entities
+    - GET    https://api.roadie.so/api/catalog/entities/by-query
+    - GET    https://api.roadie.so/api/catalog/entities/by-name/{kind}/{namespace}/{name}
+    - GET    https://api.roadie.so/api/catalog/entity-facets
+    - POST   https://api.roadie.so/api/catalog/roadie-entities/entities
+    - GET    https://api.roadie.so/api/catalog/roadie-entities/entities/{entityId}
+    - DELETE https://api.roadie.so/api/catalog/roadie-entities/entities/{entityId}
+    - PUT    https://api.roadie.so/api/catalog/roadie-entities/sets/{setName}
+    - DELETE https://api.roadie.so/api/catalog/roadie-entities/sets/{setName}
+    - GET    https://api.roadie.so/api/scaffolder/v2/actions
+    - GET    https://api.roadie.so/api/scaffolder/v2/tasks
+    - POST   https://api.roadie.so/api/scaffolder/v2/tasks
+    - GET    https://api.roadie.so/api/scaffolder/v2/tasks/{taskId}
+    - GET    https://api.roadie.so/api/scaffolder/v2/tasks/{taskId}/eventstream
+    - POST   https://api.roadie.so/api/scaffolder/v2/dry-run
+    - GET    https://api.roadie.so/api/tech-insights/v1/facts
+    - GET    https://api.roadie.so/api/tech-insights/v1/checks
+    - POST   https://api.roadie.so/api/tech-insights/v1/checks/run
+    - GET    https://api.roadie.so/api/tech-insights/v1/scorecards
+  endpointsModeled:
+    - GET    https://api.roadie.so/api/techdocs/metadata/entity/{namespace}/{kind}/{name}
+    - GET    https://api.roadie.so/api/techdocs/static/docs/{namespace}/{kind}/{name}/{path}
+  mcpServers:
+    - https://api.roadie.so/api/mcp/v1/api-docs-query
+    - https://api.roadie.so/api/mcp/v1/backend-config
+    - https://api.roadie.so/api/mcp/v1/catalog-decorators
+    - https://api.roadie.so/api/mcp/v1/rich-catalog-entity
+    - https://api.roadie.so/api/mcp/v1/scaffolder-use
+    - https://api.roadie.so/api/mcp/v1/tech-insights-facts
+sources:
+  - url: https://roadie.io/docs/api/overview/
+    type: Documentation
+    note: Public API overview - base https://api.roadie.so/api, Bearer auth.
+  - url: https://roadie.io/docs/api/authorization/
+    type: Documentation
+    note: User Tokens and Service Tokens; Authorization Bearer header; shown once.
+  - url: https://roadie.io/docs/api/catalog/
+    type: APIReference
+    note: Catalog API reference (Scalar interactive docs).
+  - url: https://roadie.io/docs/api/entity-push-api/
+    type: APIReference
+    note: roadie-entities entities and idempotent entity sets.
+  - url: https://roadie.io/docs/integrations/roadie-api/
+    type: Documentation
+    note: Using the Roadie API - base URL and Bearer auth, Cloud Hosted only.
+  - url: https://roadie.io/docs/api/templates/
+    type: APIReference
+    note: Scaffolder v2 - actions, tasks, dry-run.
+  - url: https://roadie.io/docs/api/techinsights/
+    type: APIReference
+    note: Tech Insights v1 - facts, checks, scorecards.
+  - url: https://roadie.io/docs/api/roadie-mcp/
+    type: Documentation
+    note: Six MCP servers under /api/mcp/v1.
+  - url: https://roadie.io/docs/api/roadie-mcp/scaffolder/
+    type: Documentation
+    note: Scaffolder MCP server operations - find, retrieve, validate, run, get task.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on Roadie's own public API. The API is
+    request/response REST (Catalog, entity-push, Scaffolder v2, Tech Insights,
+    TechDocs), with one Server-Sent Events stream for scaffolder task progress
+    and six MCP servers over streamable HTTP. No AsyncAPI document was created
+    because there is no documented server-push WebSocket transport to model.

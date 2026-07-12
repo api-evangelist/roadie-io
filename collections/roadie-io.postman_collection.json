@@ -1,0 +1,215 @@
+{
+  "info": {
+    "name": "Roadie API",
+    "description": "Roadie is managed Backstage - a hosted internal developer portal and software catalog. This collection covers the public REST API at https://api.roadie.so/api: the software Catalog (read), the Entity Push API (roadie-entities and idempotent entity sets), the Scaffolder v2 API (software templates), and the Tech Insights v1 API (facts, checks, scorecards). All requests require a Bearer token (User or Service Token) created in the Roadie Administration UI. Available on Cloud Hosted Roadie.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.roadie.so/api", "type": "string" },
+    { "key": "bearerToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Catalog",
+      "item": [
+        {
+          "name": "List catalog entities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/entities", "host": ["{{baseUrl}}"], "path": ["catalog", "entities"] },
+            "description": "Lists software catalog entities. Supports filter, fields, limit, and offset query parameters."
+          }
+        },
+        {
+          "name": "Query catalog entities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/entities/by-query", "host": ["{{baseUrl}}"], "path": ["catalog", "entities", "by-query"] },
+            "description": "Paginated, filterable query over catalog entities returning items plus a next cursor."
+          }
+        },
+        {
+          "name": "Get entity by name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/entities/by-name/:kind/:namespace/:name", "host": ["{{baseUrl}}"], "path": ["catalog", "entities", "by-name", ":kind", ":namespace", ":name"] },
+            "description": "Retrieves a single catalog entity by kind, namespace, and name."
+          }
+        },
+        {
+          "name": "Get entity facets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/entity-facets", "host": ["{{baseUrl}}"], "path": ["catalog", "entity-facets"] },
+            "description": "Returns counts of entities grouped by a facet such as kind or spec.type."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entity Push",
+      "item": [
+        {
+          "name": "Create a Roadie-managed entity",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": { \"name\": \"my-service\" },\n  \"spec\": { \"type\": \"service\", \"owner\": \"team-a\", \"lifecycle\": \"production\" }\n}" },
+            "url": { "raw": "{{baseUrl}}/catalog/roadie-entities/entities", "host": ["{{baseUrl}}"], "path": ["catalog", "roadie-entities", "entities"] },
+            "description": "Pushes a single Backstage-format entity into the catalog as a Roadie-owned entity."
+          }
+        },
+        {
+          "name": "Get a Roadie-managed entity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/roadie-entities/entities/:entityId", "host": ["{{baseUrl}}"], "path": ["catalog", "roadie-entities", "entities", ":entityId"] },
+            "description": "Retrieves a Roadie-owned entity by its id."
+          }
+        },
+        {
+          "name": "Delete a Roadie-managed entity",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/roadie-entities/entities/:entityId", "host": ["{{baseUrl}}"], "path": ["catalog", "roadie-entities", "entities", ":entityId"] },
+            "description": "Removes a Roadie-owned entity from the catalog by its id."
+          }
+        },
+        {
+          "name": "Create or replace an entity set",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"items\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/catalog/roadie-entities/sets/:setName", "host": ["{{baseUrl}}"], "path": ["catalog", "roadie-entities", "sets", ":setName"] },
+            "description": "Idempotently creates or replaces the complete set of entities under the named set. An empty items array clears the set."
+          }
+        },
+        {
+          "name": "Delete an entity set",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/catalog/roadie-entities/sets/:setName", "host": ["{{baseUrl}}"], "path": ["catalog", "roadie-entities", "sets", ":setName"] },
+            "description": "Deletes the named entity set and all entities it manages."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scaffolder",
+      "item": [
+        {
+          "name": "List scaffolder actions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/actions", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "actions"] },
+            "description": "Lists the scaffolder actions available to build software templates."
+          }
+        },
+        {
+          "name": "List scaffolder tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/tasks", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "tasks"] },
+            "description": "Lists scaffolder (template execution) tasks and their statuses."
+          }
+        },
+        {
+          "name": "Run a software template",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"templateRef\": \"template:default/create-service\",\n  \"values\": {}\n}" },
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/tasks", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "tasks"] },
+            "description": "Executes a Backstage software template by reference with input values and optional secrets. Returns a task id."
+          }
+        },
+        {
+          "name": "Get a scaffolder task",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/tasks/:taskId", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "tasks", ":taskId"] },
+            "description": "Retrieves the status and step output of a scaffolder task."
+          }
+        },
+        {
+          "name": "Stream scaffolder task events (SSE)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "text/event-stream" }],
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/tasks/:taskId/eventstream", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "tasks", ":taskId", "eventstream"] },
+            "description": "Server-Sent Events stream of log and completion events for a running task. Not a WebSocket."
+          }
+        },
+        {
+          "name": "Dry-run a software template",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"template\": {},\n  \"values\": {}\n}" },
+            "url": { "raw": "{{baseUrl}}/scaffolder/v2/dry-run", "host": ["{{baseUrl}}"], "path": ["scaffolder", "v2", "dry-run"] },
+            "description": "Executes a template in dry-run mode to preview output without creating anything."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tech Insights",
+      "item": [
+        {
+          "name": "Retrieve facts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tech-insights/v1/facts", "host": ["{{baseUrl}}"], "path": ["tech-insights", "v1", "facts"] },
+            "description": "Returns collected Tech Insights facts for one or more entities."
+          }
+        },
+        {
+          "name": "List checks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tech-insights/v1/checks", "host": ["{{baseUrl}}"], "path": ["tech-insights", "v1", "checks"] },
+            "description": "Lists the Tech Insights checks defined in the tenant."
+          }
+        },
+        {
+          "name": "Run checks",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"entities\": [],\n  \"checks\": []\n}" },
+            "url": { "raw": "{{baseUrl}}/tech-insights/v1/checks/run", "host": ["{{baseUrl}}"], "path": ["tech-insights", "v1", "checks", "run"] },
+            "description": "Evaluates one or more checks against the supplied entities and returns pass/fail results."
+          }
+        },
+        {
+          "name": "List scorecards",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tech-insights/v1/scorecards", "host": ["{{baseUrl}}"], "path": ["tech-insights", "v1", "scorecards"] },
+            "description": "Returns Tech Insights scorecards - grouped sets of checks measuring quality across the catalog."
+          }
+        }
+      ]
+    }
+  ]
+}

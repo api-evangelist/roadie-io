@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Catalog", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List catalog entities", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/catalog/entities" },
+          "docs": "Lists software catalog entities in your Roadie tenant. Supports filter, fields, limit, and offset query parameters."
+        },
+        {
+          "info": { "name": "Query catalog entities", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/catalog/entities/by-query" },
+          "docs": "Paginated, filterable query over catalog entities returning items plus a next cursor."
+        },
+        {
+          "info": { "name": "Get entity by name", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/catalog/entities/by-name/:kind/:namespace/:name" },
+          "docs": "Retrieves a single catalog entity by kind, namespace, and name."
+        },
+        {
+          "info": { "name": "Get entity facets", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/catalog/entity-facets" },
+          "docs": "Returns counts of entities grouped by a facet such as kind or spec.type."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Entity Push", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create a Roadie-managed entity", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/entities",
+            "body": { "type": "json", "data": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": { \"name\": \"my-service\" },\n  \"spec\": { \"type\": \"service\", \"owner\": \"team-a\", \"lifecycle\": \"production\" }\n}" }
+          },
+          "docs": "Pushes a single Backstage-format entity into the catalog as a Roadie-owned entity."
+        },
+        {
+          "info": { "name": "Get a Roadie-managed entity", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/catalog/roadie-entities/entities/:entityId" },
+          "docs": "Retrieves a Roadie-owned entity by its id."
+        },
+        {
+          "info": { "name": "Delete a Roadie-managed entity", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.roadie.so/api/catalog/roadie-entities/entities/:entityId" },
+          "docs": "Removes a Roadie-owned entity from the catalog by its id."
+        },
+        {
+          "info": { "name": "Create or replace an entity set", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/sets/:setName",
+            "body": { "type": "json", "data": "{\n  \"items\": []\n}" }
+          },
+          "docs": "Idempotently creates or replaces the complete set of entities under the named set. An empty items array clears the set."
+        },
+        {
+          "info": { "name": "Delete an entity set", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.roadie.so/api/catalog/roadie-entities/sets/:setName" },
+          "docs": "Deletes the named entity set and all entities it manages."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Scaffolder", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List scaffolder actions", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/scaffolder/v2/actions" },
+          "docs": "Lists the scaffolder actions available to build software templates."
+        },
+        {
+          "info": { "name": "List scaffolder tasks", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/scaffolder/v2/tasks" },
+          "docs": "Lists scaffolder (template execution) tasks and their statuses."
+        },
+        {
+          "info": { "name": "Run a software template", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/scaffolder/v2/tasks",
+            "body": { "type": "json", "data": "{\n  \"templateRef\": \"template:default/create-service\",\n  \"values\": {}\n}" }
+          },
+          "docs": "Executes a Backstage software template by reference with input values and optional secrets. Returns a task id."
+        },
+        {
+          "info": { "name": "Get a scaffolder task", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/scaffolder/v2/tasks/:taskId" },
+          "docs": "Retrieves the status and step output of a scaffolder task."
+        },
+        {
+          "info": { "name": "Stream scaffolder task events (SSE)", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/scaffolder/v2/tasks/:taskId/eventstream" },
+          "docs": "Server-Sent Events stream of log and completion events for a running task. Not a WebSocket."
+        },
+        {
+          "info": { "name": "Dry-run a software template", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/scaffolder/v2/dry-run",
+            "body": { "type": "json", "data": "{\n  \"template\": {},\n  \"values\": {}\n}" }
+          },
+          "docs": "Executes a template in dry-run mode to preview output without creating anything."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tech Insights", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Retrieve facts", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/tech-insights/v1/facts" },
+          "docs": "Returns collected Tech Insights facts for one or more entities."
+        },
+        {
+          "info": { "name": "List checks", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/tech-insights/v1/checks" },
+          "docs": "Lists the Tech Insights checks defined in the tenant."
+        },
+        {
+          "info": { "name": "Run checks", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/tech-insights/v1/checks/run",
+            "body": { "type": "json", "data": "{\n  \"entities\": [],\n  \"checks\": []\n}" }
+          },
+          "docs": "Evaluates one or more checks against the supplied entities and returns pass/fail results."
+        },
+        {
+          "info": { "name": "List scorecards", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.roadie.so/api/tech-insights/v1/scorecards" },
+          "docs": "Returns Tech Insights scorecards - grouped sets of checks measuring quality across the catalog."
+        }
+      ]
+    }
+  ]
+}
