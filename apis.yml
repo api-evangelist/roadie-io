@@ -178,6 +178,8 @@ apis:
     docs, read rich catalog entities, and find, validate, and execute scaffolder
     templates under Roadie's permission model.
 common:
+- type: AgenticAccess
+  url: agentic-access/roadie-io-agentic-access.yml
 - type: Authentication
   url: authentication/roadie-io-authentication.yml
 - type: LinkedIn
