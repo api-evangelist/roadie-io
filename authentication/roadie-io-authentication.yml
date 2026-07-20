@@ -9,7 +9,7 @@ schemes:
   type: http
   scheme: bearer
   description: >-
-    Roadie API token passed as `Authorization: Bearer YOUR_ROADIE_API_TOKEN`.
+    Roadie API token passed as `Authorization: Bearer [example key]`.
     Two token types exist - User Tokens (tied to a person, created under
     Administration then Account then Roadie API Access; requires the "Roadie
     API Key Access" policy) and Service Tokens (unattached, for automation and
