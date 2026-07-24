@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Roadie Catalog Entity Push API
+  description: Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.
+  version: '1.0'
+  contact:
+    name: Roadie (Larder Software Limited)
+    url: https://roadie.io
+  x-modeled: Base URLs and auth are confirmed from Roadie documentation. Individual request/response schemas are modeled from Roadie + Backstage docs and are not a Roadie-published OpenAPI file.
+servers:
+- url: https://api.roadie.so/api
+  description: Roadie Cloud Hosted API
+security:
+- bearerAuth: []
+tags:
+- name: Entity Push
+  description: Create, delete, and idempotently manage Roadie-owned catalog entities and entity sets.
+paths:
+  /catalog/roadie-entities/entities:
+    post:
+      operationId: createRoadieEntity
+      tags:
+      - Entity Push
+      summary: Create a Roadie-managed catalog entity
+      description: Pushes a single Backstage-format entity into the catalog as a Roadie-owned entity (no Location/YAML file required). Returns the newly created entity id used for later retrieval or deletion.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+      responses:
+        '200':
+          description: The entity was created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entityId:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+  /catalog/roadie-entities/entities/{entityId}:
+    get:
+      operationId: getRoadieEntity
+      tags:
+      - Entity Push
+      summary: Get a Roadie-managed entity
+      description: Retrieves a Roadie-owned entity previously created via the entity push API.
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The requested entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRoadieEntity
+      tags:
+      - Entity Push
+      summary: Delete a Roadie-managed entity
+      description: Removes a Roadie-owned entity from the catalog by its id.
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The entity was deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /catalog/roadie-entities/sets/{setName}:
+    put:
+      operationId: upsertEntitySet
+      tags:
+      - Entity Push
+      summary: Create or replace an entity set
+      description: Idempotently creates or replaces the complete set of entities under the named set. Running the same request on a schedule keeps the catalog in sync; sending an empty items array clears the set. Ideal for ingesting software catalog entities from an external system of record.
+      parameters:
+      - $ref: '#/components/parameters/SetName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Entity'
+      responses:
+        '200':
+          description: The entity set was created or replaced.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      operationId: deleteEntitySet
+      tags:
+      - Entity Push
+      summary: Delete an entity set
+      description: Deletes the named entity set and all entities it manages.
+      parameters:
+      - $ref: '#/components/parameters/SetName'
+      responses:
+        '200':
+          description: The entity set was deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Entity:
+      type: object
+      description: A Backstage-format catalog entity.
+      properties:
+        apiVersion:
+          type: string
+          example: backstage.io/v1alpha1
+        kind:
+          type: string
+          example: Component
+        metadata:
+          type: object
+          properties:
+            name:
+              type: string
+            namespace:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+            annotations:
+              type: object
+              additionalProperties:
+                type: string
+          additionalProperties: true
+        spec:
+          type: object
+          additionalProperties: true
+        relations:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
+  parameters:
+    EntityId:
+      name: entityId
+      in: path
+      required: true
+      description: Identifier of a Roadie-managed entity returned when it was created.
+      schema:
+        type: string
+    SetName:
+      name: setName
+      in: path
+      required: true
+      description: Name of the entity set to manage idempotently.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Roadie API token (User Token or Service Token) created under Administration in the Roadie app. Passed as `Authorization: Bearer YOUR_ROADIE_API_TOKEN`.'

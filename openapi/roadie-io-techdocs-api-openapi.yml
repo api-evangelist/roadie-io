@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Roadie Catalog TechDocs API
+  description: Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.
+  version: '1.0'
+  contact:
+    name: Roadie (Larder Software Limited)
+    url: https://roadie.io
+  x-modeled: Base URLs and auth are confirmed from Roadie documentation. Individual request/response schemas are modeled from Roadie + Backstage docs and are not a Roadie-published OpenAPI file.
+servers:
+- url: https://api.roadie.so/api
+  description: Roadie Cloud Hosted API
+security:
+- bearerAuth: []
+tags:
+- name: TechDocs
+  description: Technical documentation (docs-like-code) metadata and static content. Modeled from Backstage.
+paths:
+  /techdocs/metadata/entity/{namespace}/{kind}/{name}:
+    get:
+      operationId: getTechDocsMetadata
+      tags:
+      - TechDocs
+      summary: Get TechDocs metadata for an entity
+      description: Modeled from the Backstage TechDocs API. Returns metadata about the built documentation site for an entity. Confirm availability on your Roadie tenant.
+      parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - $ref: '#/components/parameters/Kind'
+      - $ref: '#/components/parameters/Name'
+      responses:
+        '200':
+          description: TechDocs metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /techdocs/static/docs/{namespace}/{kind}/{name}/{path}:
+    get:
+      operationId: getTechDocsStatic
+      tags:
+      - TechDocs
+      summary: Get a static TechDocs asset
+      description: Modeled from the Backstage TechDocs API. Serves a built documentation asset (HTML/CSS/JS/images) for an entity's docs site.
+      parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - $ref: '#/components/parameters/Kind'
+      - $ref: '#/components/parameters/Name'
+      - name: path
+        in: path
+        required: true
+        description: Path of the asset within the built docs site.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested documentation asset.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Kind:
+      name: kind
+      in: path
+      required: true
+      description: Entity kind, e.g. component, api, system, group, user, template.
+      schema:
+        type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Entity namespace, typically default.
+      schema:
+        type: string
+    Name:
+      name: name
+      in: path
+      required: true
+      description: Entity name.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Roadie API token (User Token or Service Token) created under Administration in the Roadie app. Passed as `Authorization: Bearer YOUR_ROADIE_API_TOKEN`.'

@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  title: Roadie Catalog Scaffolder API
+  description: Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.
+  version: '1.0'
+  contact:
+    name: Roadie (Larder Software Limited)
+    url: https://roadie.io
+  x-modeled: Base URLs and auth are confirmed from Roadie documentation. Individual request/response schemas are modeled from Roadie + Backstage docs and are not a Roadie-published OpenAPI file.
+servers:
+- url: https://api.roadie.so/api
+  description: Roadie Cloud Hosted API
+security:
+- bearerAuth: []
+tags:
+- name: Scaffolder
+  description: Backstage software templates - discover, dry-run, execute, and track scaffolder tasks.
+paths:
+  /scaffolder/v2/actions:
+    get:
+      operationId: listScaffolderActions
+      tags:
+      - Scaffolder
+      summary: List installed scaffolder actions
+      description: Lists the scaffolder actions available to build software templates.
+      responses:
+        '200':
+          description: Installed actions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scaffolder/v2/tasks:
+    get:
+      operationId: listScaffolderTasks
+      tags:
+      - Scaffolder
+      summary: List scaffolder tasks
+      description: Lists scaffolder (template execution) tasks and their statuses.
+      responses:
+        '200':
+          description: A list of scaffolder tasks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ScaffolderTask'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createScaffolderTask
+      tags:
+      - Scaffolder
+      summary: Run a software template
+      description: Executes a Backstage software template by reference, with the supplied input values and optional secrets. Returns a task id that can be polled or streamed for progress. This is the self-service "golden path" surface of the internal developer portal.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - templateRef
+              - values
+              properties:
+                templateRef:
+                  type: string
+                  description: Entity reference of the template, e.g. template:default/create-service.
+                values:
+                  type: object
+                  additionalProperties: true
+                secrets:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '201':
+          description: The task was created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+  /scaffolder/v2/tasks/{taskId}:
+    get:
+      operationId: getScaffolderTask
+      tags:
+      - Scaffolder
+      summary: Get a scaffolder task
+      description: Retrieves the status and step output of a scaffolder task.
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: The requested task.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScaffolderTask'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /scaffolder/v2/tasks/{taskId}/eventstream:
+    get:
+      operationId: streamScaffolderTaskEvents
+      tags:
+      - Scaffolder
+      summary: Stream scaffolder task events
+      description: Server-Sent Events (SSE) stream of log and completion events for a running scaffolder task. This is a text/event-stream long-poll, not a WebSocket.
+      parameters:
+      - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: An SSE stream of task events.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /scaffolder/v2/dry-run:
+    post:
+      operationId: dryRunScaffolderTemplate
+      tags:
+      - Scaffolder
+      summary: Dry-run a software template
+      description: Executes a template in dry-run mode to preview the files and output it would produce without creating anything.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: object
+                  additionalProperties: true
+                values:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: The dry-run result.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Identifier of a scaffolder task.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
+    ScaffolderTask:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: One of open, processing, cancelled, failed, or completed.
+        spec:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Roadie API token (User Token or Service Token) created under Administration in the Roadie app. Passed as `Authorization: Bearer YOUR_ROADIE_API_TOKEN`.'
