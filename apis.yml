@@ -15,7 +15,20 @@ description: >-
   base. Backstage itself is free and open source; Roadie is the commercial
   managed product, priced per contributing developer. Operated by Larder
   Software Limited.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/roadie-io.png
 tags:
 - Software Catalog
 - Internal Developer Portal
@@ -32,130 +45,6 @@ created: '2026-07-11'
 modified: '2026-07-11'
 specificationVersion: '0.19'
 apis:
-- aid: roadie-io:roadie-io-catalog-api
-  name: Roadie Catalog API
-  tags:
-  - Software Catalog
-  - Entities
-  - Backstage
-  - Service Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://roadie.io/docs/api/catalog/
-  baseURL: https://api.roadie.so/api/catalog
-  properties:
-  - url: https://roadie.io/docs/api/overview/
-    type: Documentation
-  - url: https://roadie.io/docs/api/catalog/
-    type: APIReference
-  - url: openapi/roadie-io-openapi.yml
-    type: OpenAPI
-  - url: collections/roadie-io.postman_collection.json
-    type: PostmanCollection
-  - url: collections/roadie-io.opencollection.json
-    type: OpenCollection
-  description: >-
-    Read the Backstage software catalog in your Roadie tenant - list, query, and
-    fetch entities (Components, APIs, Systems, Resources, Groups, Users,
-    Templates) by name or filter, and aggregate entity facets. This is the core
-    software-catalog surface of the managed internal developer portal.
-- aid: roadie-io:roadie-io-entity-push-api
-  name: Roadie Entity Push API
-  tags:
-  - Software Catalog
-  - Entities
-  - Ingestion
-  - IDP
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://roadie.io/docs/api/entity-push-api/
-  baseURL: https://api.roadie.so/api/catalog/roadie-entities
-  properties:
-  - url: https://roadie.io/docs/api/entity-push-api/
-    type: Documentation
-  - url: https://roadie.io/docs/integrations/roadie-api/
-    type: APIReference
-  - url: openapi/roadie-io-openapi.yml
-    type: OpenAPI
-  - url: collections/roadie-io.postman_collection.json
-    type: PostmanCollection
-  - url: collections/roadie-io.opencollection.json
-    type: OpenCollection
-  description: >-
-    Programmatically populate the software catalog without YAML files - POST,
-    GET, and DELETE individual Roadie-managed entities, and idempotently create
-    or replace complete entity sets with PUT so a scheduled job keeps the
-    catalog in sync with an external system of record.
-- aid: roadie-io:roadie-io-scaffolder-api
-  name: Roadie Scaffolder API
-  tags:
-  - Scaffolder
-  - Templates
-  - Self Service
-  - Golden Paths
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://roadie.io/docs/api/templates/
-  baseURL: https://api.roadie.so/api/scaffolder/v2
-  properties:
-  - url: https://roadie.io/docs/api/templates/
-    type: Documentation
-  - url: https://roadie.io/docs/api/templates/
-    type: APIReference
-  - url: openapi/roadie-io-openapi.yml
-    type: OpenAPI
-  - url: collections/roadie-io.postman_collection.json
-    type: PostmanCollection
-  - url: collections/roadie-io.opencollection.json
-    type: OpenCollection
-  description: >-
-    Backstage software templates as an API - list scaffolder actions, dry-run a
-    template, execute a template with input values and secrets, and poll or
-    stream task status. This is the self-service "golden path" surface developers
-    use to spin up new services from the portal.
-- aid: roadie-io:roadie-io-tech-insights-api
-  name: Roadie Tech Insights API
-  tags:
-  - Scorecards
-  - Checks
-  - Facts
-  - Quality
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://roadie.io/docs/api/techinsights/
-  baseURL: https://api.roadie.so/api/tech-insights/v1
-  properties:
-  - url: https://roadie.io/docs/api/techinsights/
-    type: Documentation
-  - url: https://roadie.io/docs/api/techinsights/
-    type: APIReference
-  - url: openapi/roadie-io-openapi.yml
-    type: OpenAPI
-  - url: collections/roadie-io.postman_collection.json
-    type: PostmanCollection
-  - url: collections/roadie-io.opencollection.json
-    type: OpenCollection
-  description: >-
-    Query Tech Insights over the software catalog - retrieve collected facts for
-    entities, list and run checks (boolean assertions over those facts), and read
-    scorecards that measure maturity, security, and ownership quality across the
-    developer portal.
-- aid: roadie-io:roadie-io-techdocs-api
-  name: Roadie TechDocs API
-  tags:
-  - TechDocs
-  - Documentation
-  - Docs as Code
-  - Backstage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://roadie.io/docs/getting-started/technical-documentation/
-  baseURL: https://api.roadie.so/api/techdocs
-  properties:
-  - url: https://roadie.io/docs/getting-started/technical-documentation/
-    type: Documentation
-  - url: openapi/roadie-io-openapi.yml
-    type: OpenAPI
-  description: >-
-    Technical documentation (docs-like-code) surface of the portal - fetch
-    TechDocs metadata and built static documentation assets for a catalog
-    entity. Modeled from the Backstage TechDocs API; confirm availability on your
-    Roadie tenant.
 - aid: roadie-io:roadie-io-mcp-servers
   name: Roadie MCP Servers
   tags:
@@ -172,11 +61,171 @@ apis:
   - url: https://roadie.io/docs/api/roadie-mcp/scaffolder/
     type: APIReference
   description: >-
-    Six agent-native Model Context Protocol (MCP) servers over the Roadie API -
-    api-docs-query, backend-config, catalog-decorators, rich-catalog-entity,
-    scaffolder-use, and tech-insights-facts - letting AI agents discover API
-    docs, read rich catalog entities, and find, validate, and execute scaffolder
-    templates under Roadie's permission model.
+    Six agent-native Model Context Protocol (MCP) servers over the Roadie API - api-docs-query, backend-config,
+    catalog-decorators, rich-catalog-entity, scaffolder-use, and tech-insights-facts - letting AI agents
+    discover API docs, read rich catalog entities, and find, validate, and execute scaffolder templates
+    under Roadie's permission model.
+- aid: roadie-io:roadie-io-catalog-api
+  name: Roadie Catalog API
+  description: Read Backstage software catalog entities in your Roadie tenant.
+  humanURL: https://roadie.io/docs/api/catalog/
+  baseURL: https://api.roadie.so/api/catalog
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/roadie-io-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://roadie.io/docs/api/overview/
+  - type: APIReference
+    url: https://roadie.io/docs/api/catalog/
+  - type: PostmanCollection
+    url: collections/roadie-io.postman_collection.json
+  - type: OpenCollection
+    url: collections/roadie-io.opencollection.json
+  - type: Documentation
+    url: https://roadie.io/docs/api/entity-push-api/
+  - type: APIReference
+    url: https://roadie.io/docs/integrations/roadie-api/
+  - type: Documentation
+    url: https://roadie.io/docs/api/templates/
+  - type: APIReference
+    url: https://roadie.io/docs/api/templates/
+  - type: Documentation
+    url: https://roadie.io/docs/api/techinsights/
+  - type: APIReference
+    url: https://roadie.io/docs/api/techinsights/
+  - type: Documentation
+    url: https://roadie.io/docs/getting-started/technical-documentation/
+- aid: roadie-io:roadie-io-entity-push-api
+  name: Roadie Entity Push API
+  description: Create, delete, and idempotently manage Roadie-owned catalog entities and entity sets.
+  humanURL: https://roadie.io/docs/api/catalog/
+  baseURL: https://api.roadie.so/api/catalog
+  tags:
+  - Entity Push
+  properties:
+  - type: OpenAPI
+    url: openapi/roadie-io-entity-push-api-openapi.yml
+  - type: Documentation
+    url: https://roadie.io/docs/api/overview/
+  - type: APIReference
+    url: https://roadie.io/docs/api/catalog/
+  - type: PostmanCollection
+    url: collections/roadie-io.postman_collection.json
+  - type: OpenCollection
+    url: collections/roadie-io.opencollection.json
+  - type: Documentation
+    url: https://roadie.io/docs/api/entity-push-api/
+  - type: APIReference
+    url: https://roadie.io/docs/integrations/roadie-api/
+  - type: Documentation
+    url: https://roadie.io/docs/api/templates/
+  - type: APIReference
+    url: https://roadie.io/docs/api/templates/
+  - type: Documentation
+    url: https://roadie.io/docs/api/techinsights/
+  - type: APIReference
+    url: https://roadie.io/docs/api/techinsights/
+  - type: Documentation
+    url: https://roadie.io/docs/getting-started/technical-documentation/
+- aid: roadie-io:roadie-io-scaffolder-api
+  name: Roadie Scaffolder API
+  description: Backstage software templates - discover, dry-run, execute, and track scaffolder tasks.
+  humanURL: https://roadie.io/docs/api/catalog/
+  baseURL: https://api.roadie.so/api/catalog
+  tags:
+  - Scaffolder
+  properties:
+  - type: OpenAPI
+    url: openapi/roadie-io-scaffolder-api-openapi.yml
+  - type: Documentation
+    url: https://roadie.io/docs/api/overview/
+  - type: APIReference
+    url: https://roadie.io/docs/api/catalog/
+  - type: PostmanCollection
+    url: collections/roadie-io.postman_collection.json
+  - type: OpenCollection
+    url: collections/roadie-io.opencollection.json
+  - type: Documentation
+    url: https://roadie.io/docs/api/entity-push-api/
+  - type: APIReference
+    url: https://roadie.io/docs/integrations/roadie-api/
+  - type: Documentation
+    url: https://roadie.io/docs/api/templates/
+  - type: APIReference
+    url: https://roadie.io/docs/api/templates/
+  - type: Documentation
+    url: https://roadie.io/docs/api/techinsights/
+  - type: APIReference
+    url: https://roadie.io/docs/api/techinsights/
+  - type: Documentation
+    url: https://roadie.io/docs/getting-started/technical-documentation/
+- aid: roadie-io:roadie-io-tech-insights-api
+  name: Roadie Tech Insights API
+  description: Facts, checks, and scorecards describing entity quality and compliance.
+  humanURL: https://roadie.io/docs/api/catalog/
+  baseURL: https://api.roadie.so/api/catalog
+  tags:
+  - Tech Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/roadie-io-tech-insights-api-openapi.yml
+  - type: Documentation
+    url: https://roadie.io/docs/api/overview/
+  - type: APIReference
+    url: https://roadie.io/docs/api/catalog/
+  - type: PostmanCollection
+    url: collections/roadie-io.postman_collection.json
+  - type: OpenCollection
+    url: collections/roadie-io.opencollection.json
+  - type: Documentation
+    url: https://roadie.io/docs/api/entity-push-api/
+  - type: APIReference
+    url: https://roadie.io/docs/integrations/roadie-api/
+  - type: Documentation
+    url: https://roadie.io/docs/api/templates/
+  - type: APIReference
+    url: https://roadie.io/docs/api/templates/
+  - type: Documentation
+    url: https://roadie.io/docs/api/techinsights/
+  - type: APIReference
+    url: https://roadie.io/docs/api/techinsights/
+  - type: Documentation
+    url: https://roadie.io/docs/getting-started/technical-documentation/
+- aid: roadie-io:roadie-io-techdocs-api
+  name: Roadie TechDocs API
+  description: >-
+    Technical documentation (docs-like-code) metadata and static content. Modeled from Backstage.
+  humanURL: https://roadie.io/docs/api/catalog/
+  baseURL: https://api.roadie.so/api/catalog
+  tags:
+  - TechDocs
+  properties:
+  - type: OpenAPI
+    url: openapi/roadie-io-techdocs-api-openapi.yml
+  - type: Documentation
+    url: https://roadie.io/docs/api/overview/
+  - type: APIReference
+    url: https://roadie.io/docs/api/catalog/
+  - type: PostmanCollection
+    url: collections/roadie-io.postman_collection.json
+  - type: OpenCollection
+    url: collections/roadie-io.opencollection.json
+  - type: Documentation
+    url: https://roadie.io/docs/api/entity-push-api/
+  - type: APIReference
+    url: https://roadie.io/docs/integrations/roadie-api/
+  - type: Documentation
+    url: https://roadie.io/docs/api/templates/
+  - type: APIReference
+    url: https://roadie.io/docs/api/templates/
+  - type: Documentation
+    url: https://roadie.io/docs/api/techinsights/
+  - type: APIReference
+    url: https://roadie.io/docs/api/techinsights/
+  - type: Documentation
+    url: https://roadie.io/docs/getting-started/technical-documentation/
 common:
 - type: AgenticAccess
   url: agentic-access/roadie-io-agentic-access.yml
