@@ -1,0 +1,22 @@
+{
+  "provider": "roadie-io",
+  "sources": [
+    "roadie-io-catalog-api-openapi.yml",
+    "roadie-io-entity-push-api-openapi.yml",
+    "roadie-io-scaffolder-api-openapi.yml",
+    "roadie-io-tech-insights-api-openapi.yml",
+    "roadie-io-techdocs-api-openapi.yml"
+  ],
+  "outputs": [
+    "roadie-io-catalog-api-openapi.yml",
+    "roadie-io-entity-push-api-openapi.yml",
+    "roadie-io-scaffolder-api-openapi.yml",
+    "roadie-io-tech-insights-api-openapi.yml",
+    "roadie-io-techdocs-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
