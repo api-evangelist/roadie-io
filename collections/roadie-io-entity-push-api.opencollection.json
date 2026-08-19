@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie Catalog Entity Push API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entity Push",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Roadie-managed catalog entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/entities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pushes a single Backstage-format entity into the catalog as a Roadie-owned entity (no Location/YAML file required). Returns the newly created entity id used for later retrieval or deletion."
+        },
+        {
+          "info": {
+            "name": "Get a Roadie-managed entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a Roadie-managed entity returned when it was created."
+              }
+            ]
+          },
+          "docs": "Retrieves a Roadie-owned entity previously created via the entity push API."
+        },
+        {
+          "info": {
+            "name": "Delete a Roadie-managed entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/entities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a Roadie-managed entity returned when it was created."
+              }
+            ]
+          },
+          "docs": "Removes a Roadie-owned entity from the catalog by its id."
+        },
+        {
+          "info": {
+            "name": "Create or replace an entity set",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/sets/:setName",
+            "params": [
+              {
+                "name": "setName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the entity set to manage idempotently."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Idempotently creates or replaces the complete set of entities under the named set. Running the same request on a schedule keeps the catalog in sync; sending an empty items array clears the set. Ideal for ingesting software catalog entities from an external system of record."
+        },
+        {
+          "info": {
+            "name": "Delete an entity set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.roadie.so/api/catalog/roadie-entities/sets/:setName",
+            "params": [
+              {
+                "name": "setName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the entity set to manage idempotently."
+              }
+            ]
+          },
+          "docs": "Deletes the named entity set and all entities it manages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

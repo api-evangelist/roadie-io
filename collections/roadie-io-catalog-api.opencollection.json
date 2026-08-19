@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie Catalog API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List catalog entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/catalog/entities",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Backstage entity filter, e.g. kind=component,spec.type=service."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of entity fields to return."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists software catalog entities (Components, APIs, Systems, Resources, Groups, Users, Templates, and more) in your Roadie tenant. Supports Backstage-style filter, fields, offset, and limit query parameters."
+        },
+        {
+          "info": {
+            "name": "Query catalog entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/catalog/entities/by-query",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Paginated, filterable query over catalog entities returning items plus a cursor for the next page. Mirrors the Backstage entities/by-query endpoint."
+        },
+        {
+          "info": {
+            "name": "Get a catalog entity by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/catalog/entities/by-name/:kind/:namespace/:name",
+            "params": [
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path",
+                "description": "Entity kind, e.g. component, api, system, group, user, template."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Entity namespace, typically default."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Entity name."
+              }
+            ]
+          },
+          "docs": "Retrieves a single catalog entity by its kind, namespace, and name."
+        },
+        {
+          "info": {
+            "name": "Get entity facets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/catalog/entity-facets",
+            "params": [
+              {
+                "name": "facet",
+                "value": "",
+                "type": "query",
+                "description": "Facet path to aggregate on, e.g. kind or spec.type."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns counts of entities grouped by one or more facets (for example spec.type or metadata.tags), useful for building catalog filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

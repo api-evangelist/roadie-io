@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie Catalog TechDocs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TechDocs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get TechDocs metadata for an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/techdocs/metadata/entity/:namespace/:kind/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Entity namespace, typically default."
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path",
+                "description": "Entity kind, e.g. component, api, system, group, user, template."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Entity name."
+              }
+            ]
+          },
+          "docs": "Modeled from the Backstage TechDocs API. Returns metadata about the built documentation site for an entity. Confirm availability on your Roadie tenant."
+        },
+        {
+          "info": {
+            "name": "Get a static TechDocs asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/techdocs/static/docs/:namespace/:kind/:name/:path",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Entity namespace, typically default."
+              },
+              {
+                "name": "kind",
+                "value": "",
+                "type": "path",
+                "description": "Entity kind, e.g. component, api, system, group, user, template."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Entity name."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Path of the asset within the built docs site."
+              }
+            ]
+          },
+          "docs": "Modeled from the Backstage TechDocs API. Serves a built documentation asset (HTML/CSS/JS/images) for an entity's docs site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

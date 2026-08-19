@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie Catalog Scaffolder API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scaffolder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List installed scaffolder actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/scaffolder/v2/actions"
+          },
+          "docs": "Lists the scaffolder actions available to build software templates."
+        },
+        {
+          "info": {
+            "name": "List scaffolder tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/scaffolder/v2/tasks"
+          },
+          "docs": "Lists scaffolder (template execution) tasks and their statuses."
+        },
+        {
+          "info": {
+            "name": "Run a software template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/scaffolder/v2/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Backstage software template by reference, with the supplied input values and optional secrets. Returns a task id that can be polled or streamed for progress. This is the self-service \"golden path\" surface of the internal developer portal."
+        },
+        {
+          "info": {
+            "name": "Get a scaffolder task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/scaffolder/v2/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a scaffolder task."
+              }
+            ]
+          },
+          "docs": "Retrieves the status and step output of a scaffolder task."
+        },
+        {
+          "info": {
+            "name": "Stream scaffolder task events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/scaffolder/v2/tasks/:taskId/eventstream",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of a scaffolder task."
+              }
+            ]
+          },
+          "docs": "Server-Sent Events (SSE) stream of log and completion events for a running scaffolder task. This is a text/event-stream long-poll, not a WebSocket."
+        },
+        {
+          "info": {
+            "name": "Dry-run a software template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/scaffolder/v2/dry-run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a template in dry-run mode to preview the files and output it would produce without creating anything."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

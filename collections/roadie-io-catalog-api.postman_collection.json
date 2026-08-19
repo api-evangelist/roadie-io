@@ -1,0 +1,817 @@
+{
+  "item": [
+    {
+      "id": "1784c229-8b5e-468c-972b-fe5f9d8be6eb",
+      "name": "Catalog",
+      "description": {
+        "content": "Read Backstage software catalog entities in your Roadie tenant.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e19b14f7-e67e-43a3-8499-48409718ef70",
+          "name": "List catalog entities",
+          "request": {
+            "name": "List catalog entities",
+            "description": {
+              "content": "Lists software catalog entities (Components, APIs, Systems, Resources, Groups, Users, Templates, and more) in your Roadie tenant. Supports Backstage-style filter, fields, offset, and limit query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Backstage entity filter, e.g. kind=component,spec.type=service."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of entity fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f55851ca-9fe1-43c4-ab15-095dd96c241a",
+              "name": "A list of catalog entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apiVersion\": \"backstage.io/v1alpha1\",\n    \"kind\": \"Component\",\n    \"metadata\": {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"spec\": {\n      \"key_0\": \"string\"\n    },\n    \"relations\": [\n      {\n        \"key_0\": 8579,\n        \"key_1\": 2765.810421939799,\n        \"key_2\": 2678,\n        \"key_3\": \"string\"\n      },\n      {\n        \"key_0\": \"string\"\n      }\n    ]\n  },\n  {\n    \"apiVersion\": \"backstage.io/v1alpha1\",\n    \"kind\": \"Component\",\n    \"metadata\": {\n      \"name\": \"string\",\n      \"namespace\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"annotations\": {\n        \"key_0\": \"string\"\n      },\n      \"key_0\": 8774\n    },\n    \"spec\": {\n      \"key_0\": 4342,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": true\n    },\n    \"relations\": [\n      {\n        \"key_0\": 7600\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": 7417.0933917226075,\n        \"key_2\": true,\n        \"key_3\": 6949\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0673d63f-469e-4f7c-945b-eaf3feb5da49",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5ee56d9-7e7c-4460-966d-4f8bcca7772c",
+          "name": "Query catalog entities",
+          "request": {
+            "name": "Query catalog entities",
+            "description": {
+              "content": "Paginated, filterable query over catalog entities returning items plus a cursor for the next page. Mirrors the Backstage entities/by-query endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "entities",
+                "by-query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5933fa07-7e6e-49a4-94c7-50f40d941dbd",
+              "name": "A page of catalog entities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities",
+                    "by-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false,\n        \"key_1\": 6226,\n        \"key_2\": 9136.802013514309\n      },\n      \"relations\": [\n        {\n          \"key_0\": false,\n          \"key_1\": false\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"string\",\n        \"namespace\": \"string\",\n        \"title\": \"string\",\n        \"description\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false,\n        \"key_1\": 8454.96939388426\n      },\n      \"relations\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": true,\n          \"key_2\": 1545\n        },\n        {\n          \"key_0\": 7310.365880059876,\n          \"key_1\": false,\n          \"key_2\": true\n        }\n      ],\n      \"key_0\": 4952.0774131740245,\n      \"key_1\": 5981,\n      \"key_2\": 3180\n    }\n  ],\n  \"pageInfo\": {\n    \"nextCursor\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26e12d18-6763-493b-bdc3-33499e748ad5",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities",
+                    "by-query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39c54b33-44a9-4eda-b751-759ddd81a355",
+          "name": "Get a catalog entity by name",
+          "request": {
+            "name": "Get a catalog entity by name",
+            "description": {
+              "content": "Retrieves a single catalog entity by its kind, namespace, and name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "entities",
+                "by-name",
+                ":kind",
+                ":namespace",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "kind",
+                  "description": "(Required) Entity kind, e.g. component, api, system, group, user, template."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) Entity namespace, typically default."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Entity name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa5e5df5-da79-4830-96a0-a3ac206cc3c0",
+              "name": "The requested catalog entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities",
+                    "by-name",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) Entity kind, e.g. component, api, system, group, user, template."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) Entity namespace, typically default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Entity name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": {\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"spec\": {\n    \"key_0\": 359,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"relations\": [\n    {\n      \"key_0\": 6540.27189390736,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    {\n      \"key_0\": 5752.830786364316\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aef6f00e-fad6-439b-89ce-1d8362149558",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities",
+                    "by-name",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) Entity kind, e.g. component, api, system, group, user, template."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) Entity namespace, typically default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Entity name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "645f29f1-808e-4311-8b1a-aaed6e6c57f9",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entities",
+                    "by-name",
+                    ":kind",
+                    ":namespace",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "kind",
+                      "description": "(Required) Entity kind, e.g. component, api, system, group, user, template."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) Entity namespace, typically default."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Entity name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a49bfe2-4a43-4c59-be8c-2fd7d9a87655",
+          "name": "Get entity facets",
+          "request": {
+            "name": "Get entity facets",
+            "description": {
+              "content": "Returns counts of entities grouped by one or more facets (for example spec.type or metadata.tags), useful for building catalog filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "entity-facets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "facet",
+                  "value": "<string>",
+                  "description": "(Required) Facet path to aggregate on, e.g. kind or spec.type."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9578af4-222e-4908-9b67-237f44db2f53",
+              "name": "Facet counts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entity-facets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facet",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7902.477142521266\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c2f0bc9-39c0-4a48-aca9-f832b6240360",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "entity-facets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "facet",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.roadie.so/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb7bba81-4554-4fac-a09a-4a58d316d3f8",
+    "name": "Roadie Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.\n\nContact Support:\n Name: Roadie (Larder Software Limited)",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Roadie Catalog Tech Insights API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tech Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve facts for entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/tech-insights/v1/facts",
+            "params": [
+              {
+                "name": "entity",
+                "value": "",
+                "type": "query",
+                "description": "Entity reference to scope facts to, e.g. component:default/my-service."
+              }
+            ]
+          },
+          "docs": "Returns collected Tech Insights facts (raw signals such as presence of an owner, README, or a passing pipeline) for one or more entities."
+        },
+        {
+          "info": {
+            "name": "List defined checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/tech-insights/v1/checks"
+          },
+          "docs": "Lists the Tech Insights checks (boolean assertions over facts) defined in the tenant."
+        },
+        {
+          "info": {
+            "name": "Run checks against entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.roadie.so/api/tech-insights/v1/checks/run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Evaluates one or more checks against the supplied entities and returns pass/fail results."
+        },
+        {
+          "info": {
+            "name": "List scorecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.roadie.so/api/tech-insights/v1/scorecards"
+          },
+          "docs": "Returns Tech Insights scorecards - grouped sets of checks that measure maturity, security, or ownership quality across the software catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,598 @@
+{
+  "item": [
+    {
+      "id": "a66fc37c-4aea-4ba4-bd29-604420200937",
+      "name": "Tech Insights",
+      "description": {
+        "content": "Facts, checks, and scorecards describing entity quality and compliance.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b02ccc4-595b-41e0-a516-3d08745f578e",
+          "name": "Retrieve facts for entities",
+          "request": {
+            "name": "Retrieve facts for entities",
+            "description": {
+              "content": "Returns collected Tech Insights facts (raw signals such as presence of an owner, README, or a passing pipeline) for one or more entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tech-insights",
+                "v1",
+                "facts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "entity",
+                  "value": "<string>",
+                  "description": "Entity reference to scope facts to, e.g. component:default/my-service."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01c9791a-2f1c-4537-9135-1eb46a756cee",
+              "name": "Facts keyed by fact id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "facts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 7256\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2df9e6a-bb70-4276-a4c0-8ff9780b5f5e",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "facts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "entity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16a35852-b790-458a-9ad5-cfe6729f6b28",
+          "name": "List defined checks",
+          "request": {
+            "name": "List defined checks",
+            "description": {
+              "content": "Lists the Tech Insights checks (boolean assertions over facts) defined in the tenant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tech-insights",
+                "v1",
+                "checks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ce77829-1bca-413a-92cb-0d961c681bcd",
+              "name": "A list of checks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 639.276291260702,\n    \"key_1\": true\n  },\n  {\n    \"key_0\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ada3f6c-6846-428d-98a4-792095bd7af9",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "checks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98783f21-e270-49a0-aa98-e1e09c5526dc",
+          "name": "Run checks against entities",
+          "request": {
+            "name": "Run checks against entities",
+            "description": {
+              "content": "Evaluates one or more checks against the supplied entities and returns pass/fail results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tech-insights",
+                "v1",
+                "checks",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"checks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d279a8bc-0c17-4e0c-af40-add6bf9fbe79",
+              "name": "Check results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "checks",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"checks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 639.276291260702,\n    \"key_1\": true\n  },\n  {\n    \"key_0\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22ebfe72-807d-4471-a470-a799c2072ee7",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "checks",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"checks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86d09f46-c826-404f-9542-278623d57b7f",
+          "name": "List scorecards",
+          "request": {
+            "name": "List scorecards",
+            "description": {
+              "content": "Returns Tech Insights scorecards - grouped sets of checks that measure maturity, security, or ownership quality across the software catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tech-insights",
+                "v1",
+                "scorecards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3c811e2-c1cd-4f9b-a158-5b9b26ee4824",
+              "name": "A list of scorecards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "scorecards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key_0\": 639.276291260702,\n    \"key_1\": true\n  },\n  {\n    \"key_0\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6954d9d5-4aa3-4cee-add2-27c55dde4578",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tech-insights",
+                    "v1",
+                    "scorecards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.roadie.so/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b4e4d910-191b-4f6d-b55a-53fa8f1eb39f",
+    "name": "Roadie Catalog Tech Insights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.\n\nContact Support:\n Name: Roadie (Larder Software Limited)",
+      "type": "text/plain"
+    }
+  }
+}

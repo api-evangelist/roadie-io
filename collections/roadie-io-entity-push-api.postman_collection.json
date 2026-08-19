@@ -1,0 +1,1107 @@
+{
+  "item": [
+    {
+      "id": "2f01de44-7f45-4cb5-9167-ca424f8b5591",
+      "name": "Entity Push",
+      "description": {
+        "content": "Create, delete, and idempotently manage Roadie-owned catalog entities and entity sets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfc07b11-4c15-4d02-9604-c45338448119",
+          "name": "Create a Roadie-managed catalog entity",
+          "request": {
+            "name": "Create a Roadie-managed catalog entity",
+            "description": {
+              "content": "Pushes a single Backstage-format entity into the catalog as a Roadie-owned entity (no Location/YAML file required). Returns the newly created entity id used for later retrieval or deletion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "roadie-entities",
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apiVersion\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"<string>\"\n    }\n  },\n  \"spec\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  },\n  \"relations\": [\n    {\n      \"key_0\": false,\n      \"key_1\": 1044,\n      \"key_2\": 7918.348851777475\n    },\n    {\n      \"key_0\": true\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8e37128-76f1-4ceb-9bde-795c97b8ce14",
+              "name": "The entity was created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"key_0\": false,\n    \"key_1\": 8031,\n    \"key_2\": \"string\",\n    \"key_3\": true\n  },\n  \"spec\": {\n    \"key_0\": 5524.7526993220645\n  },\n  \"relations\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": false\n    }\n  ],\n  \"key_0\": 4758.931029519637\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"entityId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "680caac8-57dd-4dc0-adf8-30a59603c2fd",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"key_0\": false,\n    \"key_1\": 8031,\n    \"key_2\": \"string\",\n    \"key_3\": true\n  },\n  \"spec\": {\n    \"key_0\": 5524.7526993220645\n  },\n  \"relations\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": false\n    }\n  ],\n  \"key_0\": 4758.931029519637\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8713ee0b-d377-4213-8d1c-dae6a85ad83d",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"key_0\": false,\n    \"key_1\": 8031,\n    \"key_2\": \"string\",\n    \"key_3\": true\n  },\n  \"spec\": {\n    \"key_0\": 5524.7526993220645\n  },\n  \"relations\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": false\n    }\n  ],\n  \"key_0\": 4758.931029519637\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f013fa6-b224-491a-8878-73034eb86ae5",
+          "name": "Get a Roadie-managed entity",
+          "request": {
+            "name": "Get a Roadie-managed entity",
+            "description": {
+              "content": "Retrieves a Roadie-owned entity previously created via the entity push API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "roadie-entities",
+                "entities",
+                ":entityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14c51471-fcda-415d-9181-0ec57c181321",
+              "name": "The requested entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"backstage.io/v1alpha1\",\n  \"kind\": \"Component\",\n  \"metadata\": {\n    \"name\": \"<string>\",\n    \"namespace\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"annotations\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"key_0\": false,\n    \"key_1\": 8031,\n    \"key_2\": \"string\",\n    \"key_3\": true\n  },\n  \"spec\": {\n    \"key_0\": 5524.7526993220645\n  },\n  \"relations\": [\n    {\n      \"key_0\": \"string\"\n    },\n    {\n      \"key_0\": true,\n      \"key_1\": false\n    }\n  ],\n  \"key_0\": 4758.931029519637\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87eb0296-9355-4691-a505-aa6ac552038c",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b2ce9f7-be33-4d83-b4a1-f96e5b4f38f3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9912f147-26a0-4e33-b24f-dd3334a23686",
+          "name": "Delete a Roadie-managed entity",
+          "request": {
+            "name": "Delete a Roadie-managed entity",
+            "description": {
+              "content": "Removes a Roadie-owned entity from the catalog by its id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "roadie-entities",
+                "entities",
+                ":entityId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entityId",
+                  "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "746fccf3-de0f-40a4-b223-a5d2dfb393fa",
+              "name": "The entity was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0138e091-1235-4222-a6c8-bd5453b5566b",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73dbad84-924e-41a8-8f0e-63ea088b0161",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "entities",
+                    ":entityId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entityId",
+                      "description": "(Required) Identifier of a Roadie-managed entity returned when it was created."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c37e0f6f-cb83-477c-9610-c16e0d5d561c",
+          "name": "Create or replace an entity set",
+          "request": {
+            "name": "Create or replace an entity set",
+            "description": {
+              "content": "Idempotently creates or replaces the complete set of entities under the named set. Running the same request on a schedule keeps the catalog in sync; sending an empty items array clears the set. Ideal for ingesting software catalog entities from an external system of record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "roadie-entities",
+                "sets",
+                ":setName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "setName",
+                  "description": "(Required) Name of the entity set to manage idempotently."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": \"string\"\n      },\n      \"relations\": [\n        {\n          \"key_0\": 4458\n        },\n        {\n          \"key_0\": false,\n          \"key_1\": true\n        }\n      ],\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": false,\n      \"key_3\": 6408.093341454786\n    },\n    {\n      \"apiVersion\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": \"string\"\n      },\n      \"relations\": [\n        {\n          \"key_0\": 9406,\n          \"key_1\": true\n        },\n        {\n          \"key_0\": 3150,\n          \"key_1\": 8934.84774151658,\n          \"key_2\": 3979.1755530221094\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6fd28a9-0ec0-4bba-817c-e5dbaba84da0",
+              "name": "The entity set was created or replaced.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 6855.022445783175\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 1289.9489101094864,\n          \"key_1\": 612\n        },\n        {\n          \"key_0\": 3049.0942814026657,\n          \"key_1\": false,\n          \"key_2\": 81\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8458379-ef37-41e7-997c-b62de91efded",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 6855.022445783175\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 1289.9489101094864,\n          \"key_1\": 612\n        },\n        {\n          \"key_0\": 3049.0942814026657,\n          \"key_1\": false,\n          \"key_2\": 81\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d114e52b-118c-4c75-88f3-c8635c255704",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 6855.022445783175\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"backstage.io/v1alpha1\",\n      \"kind\": \"Component\",\n      \"metadata\": {\n        \"name\": \"<string>\",\n        \"namespace\": \"<string>\",\n        \"title\": \"<string>\",\n        \"description\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"annotations\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        }\n      },\n      \"spec\": {\n        \"key_0\": false\n      },\n      \"relations\": [\n        {\n          \"key_0\": 1289.9489101094864,\n          \"key_1\": 612\n        },\n        {\n          \"key_0\": 3049.0942814026657,\n          \"key_1\": false,\n          \"key_2\": 81\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9a1effb-7075-4108-a307-b4cfa559e55b",
+          "name": "Delete an entity set",
+          "request": {
+            "name": "Delete an entity set",
+            "description": {
+              "content": "Deletes the named entity set and all entities it manages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "catalog",
+                "roadie-entities",
+                "sets",
+                ":setName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "setName",
+                  "description": "(Required) Name of the entity set to manage idempotently."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b4802f1-8edc-45de-b635-76ac0d63fe8b",
+              "name": "The entity set was deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf38ebbd-460f-470c-8ab2-2d163e18972f",
+              "name": "Missing or invalid Bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e67c91c-92f3-440e-8018-67e2c86c883d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "catalog",
+                    "roadie-entities",
+                    "sets",
+                    ":setName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "setName",
+                      "description": "(Required) Name of the entity set to manage idempotently."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"string\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.roadie.so/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8bb3df0e-a689-4735-be30-45c04f144c15",
+    "name": "Roadie Catalog Entity Push API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Roadie is a managed (SaaS) Backstage - a hosted internal developer portal and software catalog. This document models Roadie's public REST API surface exposed under https://api.roadie.so/api. It covers the software catalog (reading Backstage entities and pushing Roadie-managed entities and entity sets), the Scaffolder (Backstage software templates / self-service golden paths), Tech Insights (facts, checks, and scorecards), and TechDocs (technical documentation) surfaces. All requests are authenticated with a Bearer token (User Token or Service Token) created in the Roadie Administration UI. The Roadie public API is available on Cloud Hosted Roadie. Catalog read endpoints follow the upstream Backstage Software Catalog API shape; the roadie-entities and entity-set endpoints are Roadie's own ingestion API. Request/response schemas here are modeled from Roadie and Backstage documentation and should be reconciled against the interactive reference at https://roadie.io/docs/api/overview/ before relying on exact field names. TechDocs endpoints follow the Backstage TechDocs API and are modeled; confirm availability on your Roadie tenant.\n\nContact Support:\n Name: Roadie (Larder Software Limited)",
+      "type": "text/plain"
+    }
+  }
+}
