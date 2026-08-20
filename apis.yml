@@ -50,6 +50,11 @@ apis:
   tags:
   - MCP
   - Agents
+  - Artificial Intelligence
+  - agent-native
+  tags_raw:
+  - MCP
+  - Agents
   - AI
   - Agent Native
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
