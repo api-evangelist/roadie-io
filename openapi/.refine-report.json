@@ -1,11 +1,7 @@
 {
   "provider": "roadie-io",
   "sources": [
-    "roadie-io-catalog-api-openapi.yml",
-    "roadie-io-entity-push-api-openapi.yml",
-    "roadie-io-scaffolder-api-openapi.yml",
-    "roadie-io-tech-insights-api-openapi.yml",
-    "roadie-io-techdocs-api-openapi.yml"
+    "_original/roadie-io-openapi.yml"
   ],
   "outputs": [
     "roadie-io-catalog-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "roadie-io-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "roadie-io-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "roadie-io-entity-push-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "roadie-io-scaffolder-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "roadie-io-tech-insights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "roadie-io-techdocs-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

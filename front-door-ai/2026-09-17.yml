@@ -1,0 +1,30 @@
+# Front Door AI Index — roadie-io — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: roadie-io
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: roadie.io
+  final_host: roadie.io
+  ownership: own
+  owner: roadie-io
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 12
+  host_score: 12
+  density: 13.51
+  words: 888
+  tiers:
+    agentic: 6
+    core: 6
+    model: 0
+  ambiguous: 24
+  top_terms:
+    agent: 21
+    AI: 6
+    MCP: 4
+    agentic: 2
+    smart: 2
+    automation: 1
