@@ -64,20 +64,38 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Entity namespace, typically default.
+      schema:
+        type: string
     Name:
       name: name
       in: path
@@ -92,24 +110,6 @@ components:
       description: Entity kind, e.g. component, api, system, group, user, template.
       schema:
         type: string
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      description: Entity namespace, typically default.
-      schema:
-        type: string
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            name:
-              type: string
   securitySchemes:
     bearerAuth:
       type: http
