@@ -121,17 +121,41 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    SetName:
+      name: setName
+      in: path
+      required: true
+      description: Name of the entity set to manage idempotently.
+      schema:
+        type: string
+    EntityId:
+      name: entityId
+      in: path
+      required: true
+      description: Identifier of a Roadie-managed entity returned when it was created.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            name:
-              type: string
     Entity:
       type: object
       description: A Backstage-format catalog entity.
@@ -171,40 +195,16 @@ components:
             type: object
             additionalProperties: true
       additionalProperties: true
-  parameters:
-    EntityId:
-      name: entityId
-      in: path
-      required: true
-      description: Identifier of a Roadie-managed entity returned when it was created.
-      schema:
-        type: string
-    SetName:
-      name: setName
-      in: path
-      required: true
-      description: Name of the entity set to manage idempotently.
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
   securitySchemes:
     bearerAuth:
       type: http
