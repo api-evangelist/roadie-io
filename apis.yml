@@ -46,7 +46,6 @@ tags:
 - Internal Developer Portal
 - Backstage
 - Developer Experience
-- IDP
 - Developer Portal
 - Managed Backstage
 - Scaffolder
@@ -246,6 +245,9 @@ apis:
   - type: Documentation
     url: https://roadie.io/docs/getting-started/technical-documentation/
 common:
+- type: CapabilityMap
+  url: capabilities/roadie-io-capability-edges.yml
+  name: Roadie Business Capability Map
 - type: AgenticAccess
   url: agentic-access/roadie-io-agentic-access.yml
 - type: Authentication
@@ -267,3 +269,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-tags-removed:
+- IDP
