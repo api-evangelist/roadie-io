@@ -152,18 +152,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      description: Entity namespace, typically default.
-      schema:
-        type: string
     Name:
       name: name
       in: path
       required: true
       description: Entity name.
+      schema:
+        type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      description: Entity namespace, typically default.
       schema:
         type: string
     Kind:
@@ -174,19 +174,29 @@ components:
       schema:
         type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid Bearer token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            name:
+              type: string
     Entity:
       type: object
       description: A Backstage-format catalog entity.
@@ -226,16 +236,6 @@ components:
             type: object
             additionalProperties: true
       additionalProperties: true
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-            name:
-              type: string
   securitySchemes:
     bearerAuth:
       type: http

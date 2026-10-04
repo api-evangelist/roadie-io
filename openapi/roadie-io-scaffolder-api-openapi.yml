@@ -164,15 +164,23 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      description: Identifier of a scaffolder task.
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid Bearer token.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid Bearer token.
       content:
         application/json:
           schema:
@@ -209,14 +217,6 @@ components:
           type: string
           format: date-time
       additionalProperties: true
-  parameters:
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      description: Identifier of a scaffolder task.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
