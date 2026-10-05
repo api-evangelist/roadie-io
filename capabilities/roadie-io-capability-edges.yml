@@ -1,0 +1,55 @@
+slug: roadie-io
+provider: Roadie
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Scaffolder
+  spec_file: roadie-io-scaffolder-api-openapi.yml
+  capability_id: BC-4200.70
+  capability_id_l1: BC-4200
+  capability_name: Engineering Productivity Management
+  confidence: 0.78
+  evidence: POST /scaffolder/v2/tasks  createScaffolderTask  Run a software template
+  reason: Software templates that scaffold new services are classic internal developer platform tooling
+    that lifts delivery throughput; operations run and monitor template tasks.
+- tag: Catalog
+  spec_file: roadie-io-catalog-api-openapi.yml
+  capability_id: BC-4200.70
+  capability_id_l1: BC-4200
+  capability_name: Engineering Productivity Management
+  confidence: 0.75
+  evidence: GET /catalog/entities  listCatalogEntities  List catalog entities — "a hosted internal developer
+    portal and software catalog"
+  reason: The Backstage software catalog is the core of an internal developer platform; operations list/query
+    software entities. Engineering Productivity Management explicitly covers "internal developer platforms,
+    tooling". Alternative reading (IT Application Management) exists, hence moderate confidence.
+- tag: Entity Push
+  spec_file: roadie-io-entity-push-api-openapi.yml
+  capability_id: BC-4200.70
+  capability_id_l1: BC-4200
+  capability_name: Engineering Productivity Management
+  confidence: 0.7
+  evidence: POST /catalog/roadie-entities/entities  createRoadieEntity  Create a Roadie-managed catalog
+    entity
+  reason: Write-side management of software catalog entities within the internal developer portal; maps
+    to internal developer platform/tooling stewardship. Some ambiguity with application inventory management.
+- tag: Tech Insights
+  spec_file: roadie-io-tech-insights-api-openapi.yml
+  capability_id: BC-4200.70
+  capability_id_l1: BC-4200
+  capability_name: Engineering Productivity Management
+  confidence: 0.7
+  evidence: GET /tech-insights/v1/scorecards  listScorecards  List scorecards; POST /tech-insights/v1/checks/run  runTechInsightsChecks
+  reason: Scorecards and checks against software entities measure engineering standards compliance/performance
+    — engineering productivity and standards tooling. Could also read as software quality engineering,
+    hence 0.7.
